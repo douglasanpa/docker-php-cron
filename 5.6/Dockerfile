@@ -6,7 +6,8 @@ ENV GOROOT /usr/lib/go
 ENV GOPATH /go
 ENV PATH /go/bin:$PATH
 
-RUN apk --update add supervisor curl php5 bash nginx git make musl-dev go  && \
+RUN apk --update add supervisor curl php5 bash nginx git make musl-dev go graphviz graphviz-graphs \
+      font-bitstream-type1 ghostscript-fonts && \
       apk search -qe 'php5-*' | xargs apk --no-cache add && \
       mkdir -p ${GOPATH}/src ${GOPATH}/bin && go get github.com/korylprince/fileenv &&\
       rm -rf /etc/crontabs/root && rm -rf /var/cache/apk/*
