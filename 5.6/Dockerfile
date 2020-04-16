@@ -10,6 +10,7 @@ COPY 5.6/php-fpm.conf /etc/php5/php-fpm.conf
 COPY 5.6/crontab /etc/crontabs/root
 COPY 5.6/start.sh /
 COPY 5.6/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY 5.6/nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
 
