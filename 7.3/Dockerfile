@@ -1,8 +1,14 @@
 FROM alpine:3.11
 LABEL Maintainer="Douglas Andrade <douglasanpa@gmail.com>" \
       Description="Docker Image for PHP with CRON"
-RUN apk --update add supervisor curl php7 bash nginx  && \
+
+ENV GOROOT /usr/lib/go
+ENV GOPATH /go
+ENV PATH /go/bin:$PATH
+
+RUN apk --update add supervisor curl php7 bash nginx git make musl-dev go  && \
       apk search -qe 'php7-*' | xargs apk --no-cache add && \
+      mkdir -p ${GOPATH}/src ${GOPATH}/bin && go get github.com/korylprince/fileenv &&\
       rm -rf /etc/crontabs/root && rm -rf /var/cache/apk/*
 
 COPY php.ini /etc/php7/conf.d/50-setting.ini
@@ -17,4 +23,4 @@ WORKDIR /var/www/html
 
 HEALTHCHECK --interval=30s --timeout=30s --start-period=600s --retries=3 CMD curl http://localhost:80/ || exit 1
 
-ENTRYPOINT /start.sh
+ENTRYPOINT fileenv /start.sh
