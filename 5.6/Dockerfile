@@ -1,10 +1,8 @@
-# Forked from TrafeX/docker-php-nginx (https://github.com/TrafeX/docker-php-nginx/)
-
 FROM php:5.6-apache
 LABEL Maintainer="Douglas Andrade <douglasanpa@gmail.com>" \
       Description="Docker Image for PHP with CRON"
 
-RUN apt-get update -y && apt-get install supervisor curl -y && /etc/crontabs/root
+RUN apt-get update -y && apt-get install -y supervisor curl  && rm -rf /etc/crontabs/root
 COPY crontab /etc/crontabs/root
 COPY start.sh /
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
