@@ -6,7 +6,7 @@ ENV GOROOT /usr/lib/go
 ENV GOPATH /go
 ENV PATH /go/bin:$PATH
 
-RUN apk --update add supervisor curl php5 bash apache2-proxy git make musl-dev go graphviz graphviz-graphs \
+RUN apk --update add supervisor curl php5 bash apache2 git make musl-dev go graphviz graphviz-graphs \
       font-bitstream-type1 ghostscript-fonts && \
       apk search -qe 'php5-*' | xargs apk --no-cache add && \
       mkdir /run/apache2 /etc/apache2/vhost.d && \
