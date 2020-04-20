@@ -13,7 +13,7 @@ RUN apk --update add supervisor curl php7 bash nginx git make musl-dev go graphv
       rm -rf /etc/crontabs/root && rm -rf /var/cache/apk/*
 
 COPY php.ini /etc/php7/conf.d/50-setting.ini
-COPY php-fpm.conf /etc/php5/php-fpm.conf
+COPY php-fpm.conf /etc/php7/php-fpm.conf
 COPY crontab /etc/crontabs/root
 COPY start.sh /
 COPY nginx.conf /etc/nginx/nginx.conf
