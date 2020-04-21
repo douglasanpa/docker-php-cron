@@ -23,6 +23,6 @@ EXPOSE 80
 
 WORKDIR /var/www/html
 
-HEALTHCHECK --interval=30s --timeout=30s --start-period=600s --retries=3 CMD curl http://localhost:80/ || exit 1
+HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=3 CMD netstat -an | fgrep 80 | fgrep -q LISTEN
 
 ENTRYPOINT fileenv /start.sh
