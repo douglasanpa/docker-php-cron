@@ -6,10 +6,10 @@ ENV GOROOT /usr/lib/go
 ENV GOPATH /go
 ENV PATH /go/bin:$PATH
 
-RUN apk --update --no-cache add supervisor curl php7 bash nginx git make musl-dev go graphviz graphviz-graphs \
+RUN apk --update add supervisor curl php7 bash nginx git make musl-dev go graphviz graphviz-graphs \
       font-bitstream-type1 ghostscript-fonts && \
-      apk search -qe 'php7-*' | xargs apk --no-cache add && \
-      apk add -U --no-cache gnu-libiconv && \
+      apk search -qe 'php7-*' | xargs apk add && \
+      apk add -U gnu-libiconv && \
       mkdir -p ${GOPATH}/src ${GOPATH}/bin && go get github.com/korylprince/fileenv &&\
       rm -rf /etc/crontabs/root && rm -rf /var/cache/apk/*
 

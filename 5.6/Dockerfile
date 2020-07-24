@@ -6,10 +6,10 @@ ENV GOROOT /usr/lib/go
 ENV GOPATH /go
 ENV PATH /go/bin:$PATH
 
-RUN apk --update --no-cache add supervisor curl php5 bash nginx git make musl-dev go graphviz graphviz-graphs \
+RUN apk --update add supervisor curl php5 bash nginx git make musl-dev go graphviz graphviz-graphs \
       font-bitstream-type1 ghostscript-fonts && \
-      apk search -qe 'php5-*' | xargs apk --no-cache add && \
-      apk add -U --no-cache -t .libiconv-deps -X http://dl-cdn.alpinelinux.org/alpine/v3.10/community gnu-libiconv=1.15-r2 && \
+      apk search -qe 'php5-*' | xargs apk add && \
+      apk add -U -t .libiconv-deps -X http://dl-cdn.alpinelinux.org/alpine/v3.10/community gnu-libiconv=1.15-r2 && \
       mkdir -p ${GOPATH}/src ${GOPATH}/bin && go get github.com/korylprince/fileenv &&\
       rm -rf /etc/crontabs/root && rm -rf /var/cache/apk/*
 
